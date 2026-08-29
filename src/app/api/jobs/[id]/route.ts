@@ -10,9 +10,9 @@ export async function PUT(
 ) {
   try {
     const authHeader = request.headers.get('x-admin-key');
-    const serverKey = process.env.ADMIN_SECRET_KEY || 'admin123';
+    const serverKey = (process.env.ADMIN_SECRET_KEY || 'admin123').trim();
 
-    if (authHeader !== serverKey) {
+    if (!authHeader || authHeader.trim() !== serverKey) {
       return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
@@ -45,9 +45,9 @@ export async function DELETE(
 ) {
   try {
     const authHeader = request.headers.get('x-admin-key');
-    const serverKey = process.env.ADMIN_SECRET_KEY || 'admin123';
+    const serverKey = (process.env.ADMIN_SECRET_KEY || 'admin123').trim();
 
-    if (authHeader !== serverKey) {
+    if (!authHeader || authHeader.trim() !== serverKey) {
       return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 

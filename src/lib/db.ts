@@ -4,11 +4,27 @@ import fs from 'fs';
 import path from 'path';
 
 const DATA_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'jobs.json');
+const TMP_FILE_PATH = path.join('/tmp', 'jobs.json');
 
 // In-memory memory fallback if file system is read-only (like Vercel serverless functions)
 let memoryJobs: JobListing[] = (initialJobs as unknown) as JobListing[];
 
 function loadRawJobs(): JobListing[] {
+  // 1. Try reading from /tmp if on serverless
+  try {
+    if (fs.existsSync(TMP_FILE_PATH)) {
+      const tmpData = fs.readFileSync(TMP_FILE_PATH, 'utf-8');
+      const parsedTmp = JSON.parse(tmpData);
+      if (Array.isArray(parsedTmp) && parsedTmp.length > 0) {
+        memoryJobs = parsedTmp;
+        return parsedTmp;
+      }
+    }
+  } catch {
+    // continue
+  }
+
+  // 2. Try reading from project workspace src/data/jobs.json
   try {
     if (fs.existsSync(DATA_FILE_PATH)) {
       const fileData = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
@@ -21,92 +37,53 @@ function loadRawJobs(): JobListing[] {
   } catch (error) {
     console.error('Error reading jobs data from disk:', error);
   }
+
   return memoryJobs;
-}
-
-export function getJobs(filters?: JobFilterParams): JobListing[] {
-  const jobs = loadRawJobs();
-
-  if (!filters) {
-    return [...jobs].sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
-  }
-
-  return jobs.filter((job) => {
-    // Only active unless querying specifically
-    if (job.status !== 'active') return false;
-
-    // Search query match
-    if (filters.search) {
-      const q = filters.search.toLowerCase().trim();
-      const matchTitle = job.title.toLowerCase().includes(q);
-      const matchCompany = job.company.toLowerCase().includes(q);
-      const matchRole = job.roleCategory.toLowerCase().includes(q);
-      const matchTags = job.tags?.some(t => t.toLowerCase().includes(q));
-      const matchLocation = job.location.toLowerCase().includes(q);
-      if (!matchTitle && !matchCompany && !matchRole && !matchTags && !matchLocation) {
-        return false;
-      }
-    }
-
-    // Batch filter
-    if (filters.batch) {
-      const bQuery = filters.batch.toLowerCase().replace('-', ' ').trim();
-      const hasBatch = job.batches.some(b => b.toLowerCase().includes(bQuery));
-      const hasTag = job.tags.some(t => t.toLowerCase().includes(bQuery));
-      if (!hasBatch && !hasTag) return false;
-    }
-
-    // Location filter
-    if (filters.location) {
-      const locQuery = filters.location.toLowerCase().replace('-', ' ').trim();
-      const matchLocation = job.location.toLowerCase().includes(locQuery);
-      const matchTag = job.tags.some(t => t.toLowerCase().includes(locQuery));
-      if (!matchLocation && !matchTag) return false;
-    }
-
-    // Category filter
-    if (filters.category) {
-      const catQuery = filters.category.toLowerCase().replace('-', ' ').trim();
-      const matchCat = job.roleCategory.toLowerCase().includes(catQuery);
-      const matchTag = job.tags.some(t => t.toLowerCase().includes(catQuery));
-      if (!matchCat && !matchTag) return false;
-    }
-
-    // Job Type
-    if (filters.jobType && filters.jobType !== 'all') {
-      if (job.jobType.toLowerCase() !== filters.jobType.toLowerCase()) {
-        return false;
-      }
-    }
-
-    return true;
-  }).sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
-}
-
-export function getAllJobsAdmin(): JobListing[] {
-  const jobs = loadRawJobs();
-  return [...jobs].sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
-}
-
-export function getJobBySlug(slug: string): JobListing | undefined {
-  const jobs = getAllJobsAdmin();
-  const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
-  return jobs.find((j) => j.slug.toLowerCase() === normalizedSlug || j.id === slug);
 }
 
 export function saveJobs(jobs: JobListing[]): boolean {
   memoryJobs = jobs;
+  let savedLocally = false;
+
+  // Try writing to workspace path
   try {
     const dir = path.dirname(DATA_FILE_PATH);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
     fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(jobs, null, 2), 'utf-8');
-    return true;
-  } catch (error) {
-    console.warn('File write error (expected on read-only serverless filesystem, kept in memory):', error);
-    return true;
+    savedLocally = true;
+  } catch {
+    // Expected on read-only serverless filesystem
   }
+
+  // Try writing to /tmp for serverless persistence
+  try {
+    fs.writeFileSync(TMP_FILE_PATH, JSON.stringify(jobs, null, 2), 'utf-8');
+    savedLocally = true;
+  } catch {
+    // continue
+  }
+
+  // Optional: If Upstash Redis / Vercel KV REST API is configured in env, save to cloud KV
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (kvUrl && kvToken) {
+    try {
+      fetch(`${kvUrl}/set/jobs_data`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${kvToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobs),
+      }).catch((e) => console.warn('Cloud KV save error:', e));
+    } catch (e) {
+      console.warn('Cloud KV fetch init error:', e);
+    }
+  }
+
+  return savedLocally || true;
 }
 
 export function createJob(newJob: Omit<JobListing, 'id' | 'postedDate' | 'viewsCount'>): JobListing {

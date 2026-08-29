@@ -16,9 +16,9 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const authHeader = request.headers.get('x-admin-key');
-    const serverKey = process.env.ADMIN_SECRET_KEY || 'admin123';
+    const serverKey = (process.env.ADMIN_SECRET_KEY || 'admin123').trim();
 
-    if (authHeader !== serverKey) {
+    if (!authHeader || authHeader.trim() !== serverKey) {
       return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
