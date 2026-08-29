@@ -360,7 +360,7 @@ export default function AdminPage() {
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
                 placeholder="Enter secret PIN (default: admin123)"
-                className="w-full py-3 px-4 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-white placeholder-slate-500 focus:outline-hidden focus:ring-2 focus:ring-brand-500"
+                className="w-full py-3 px-4 bg-slate-900 border border-slate-700 rounded-xl text-sm font-medium text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -576,7 +576,7 @@ export default function AdminPage() {
 
       {/* CREATE / EDIT MODAL */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl border border-slate-200 my-8 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>

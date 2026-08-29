@@ -54,7 +54,7 @@ export default function JobFilters({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by job title, company (e.g. Datavail, Amazon, SQL, Java), or skills..."
-          className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all"
+          className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all"
         />
         {search && (
           <button
@@ -77,7 +77,7 @@ export default function JobFilters({
           <select
             value={selectedBatch}
             onChange={(e) => setSelectedBatch(e.target.value)}
-            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-brand-500 cursor-pointer"
+            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
           >
             {BATCHES.map((b) => (
               <option key={b} value={b}>
@@ -96,7 +96,7 @@ export default function JobFilters({
           <select
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
-            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-brand-500 cursor-pointer"
+            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
           >
             {LOCATIONS.map((loc) => (
               <option key={loc} value={loc}>
@@ -115,7 +115,7 @@ export default function JobFilters({
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-brand-500 cursor-pointer"
+            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
           >
             {CATEGORIES.map((cat) => (
               <option key={cat} value={cat}>
@@ -134,7 +134,7 @@ export default function JobFilters({
           <select
             value={selectedJobType}
             onChange={(e) => setSelectedJobType(e.target.value)}
-            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-hidden focus:ring-2 focus:ring-brand-500 cursor-pointer"
+            className="w-full py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
           >
             {JOB_TYPES.map((jt) => (
               <option key={jt} value={jt}>
