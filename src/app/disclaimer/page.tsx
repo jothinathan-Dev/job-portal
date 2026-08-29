@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { ShieldAlert, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Disclaimer - CommonJobs',
-  description: 'Official disclaimer regarding job listings, brand trademarks, and candidate safety on CommonJobs.',
+  title: 'Disclaimer - FreshJobs',
+  description: 'Official disclaimer regarding job listings, brand trademarks, and candidate safety on FreshJobs.',
 };
 
 export default function DisclaimerPage() {
@@ -26,9 +26,9 @@ export default function DisclaimerPage() {
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-3.5 text-amber-900">
               <ShieldAlert className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <strong className="block text-base font-heading mb-1">CommonJobs Never Charges For Job Openings</strong>
+                <strong className="block text-base font-heading mb-1">FreshJobs Never Charges For Job Openings</strong>
                 <p className="text-xs text-amber-800 leading-relaxed">
-                  We are a 100% free informational community portal. Neither CommonJobs nor genuine hiring employers will ever ask you to pay application fees, security deposits, or laptop charges for interviews. If anyone asks for money claiming to represent a recruiter, report it immediately and do not send money.
+                  We are a 100% free informational community portal. Neither FreshJobs nor genuine hiring employers will ever ask you to pay application fees, security deposits, or laptop charges for interviews. If anyone asks for money claiming to represent a recruiter, report it immediately and do not send money.
                 </p>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function DisclaimerPage() {
               1. Non-Affiliation Disclaimer
             </h2>
             <p>
-              CommonJobs is an independent website providing news and links related to off-campus recruitment drives, internships, and walk-in interviews. We are not officially affiliated with, associated with, authorized by, endorsed by, or in any way officially connected with any of the companies mentioned on our website (including Datavail, Amazon, TCS, Google, Accenture, or Deloitte).
+              FreshJobs is an independent website providing news and links related to off-campus recruitment drives, internships, and walk-in interviews. We are not officially affiliated with, associated with, authorized by, endorsed by, or in any way officially connected with any of the companies mentioned on our website (including Datavail, Amazon, TCS, Google, Accenture, or Deloitte).
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
@@ -51,7 +51,7 @@ export default function DisclaimerPage() {
               3. No Guarantee of Placement
             </h2>
             <p>
-              CommonJobs does not guarantee that applying through links on our site will result in an interview call or job offer. Selection and hiring criteria are entirely at the sole discretion of the hiring company.
+              FreshJobs does not guarantee that applying through links on our site will result in an interview call or job offer. Selection and hiring criteria are entirely at the sole discretion of the hiring company.
             </p>
           </div>
         </div>

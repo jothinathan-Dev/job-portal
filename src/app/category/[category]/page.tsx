@@ -5,6 +5,10 @@ import JobsClientList from '@/app/jobs/JobsClientList';
 import AdBanner from '@/components/AdBanner';
 import { Briefcase } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
+
 interface CategoryPageProps {
   params: {
     category: string;
@@ -23,7 +27,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const formattedCat = params.category.replace('-', ' ').toUpperCase();
   return {
-    title: `${formattedCat} Off Campus Drives - CommonJobs`,
+    title: `${formattedCat} Off Campus Drives - FreshJobs`,
     description: `Latest off-campus recruitment drives, freshers jobs, and internships in ${formattedCat}. Apply online directly.`,
   };
 }

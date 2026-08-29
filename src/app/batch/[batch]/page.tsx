@@ -5,6 +5,10 @@ import JobsClientList from '@/app/jobs/JobsClientList';
 import AdBanner from '@/components/AdBanner';
 import { GraduationCap } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
+
 interface BatchPageProps {
   params: {
     batch: string;
@@ -23,7 +27,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BatchPageProps): Promise<Metadata> {
   const formattedBatch = params.batch.replace('-', ' ').toUpperCase();
   return {
-    title: `${formattedBatch} Off Campus Drives & Hiring - CommonJobs`,
+    title: `${formattedBatch} Off Campus Drives & Hiring - FreshJobs`,
     description: `Latest verified off-campus drives, fresher hiring, and software developer jobs specifically for ${formattedBatch} students. Direct official application links.`,
   };
 }

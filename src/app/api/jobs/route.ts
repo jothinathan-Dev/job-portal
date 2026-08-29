@@ -1,9 +1,16 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getAllJobsAdmin, createJob } from '@/lib/db';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const jobs = getAllJobsAdmin();
-  return NextResponse.json({ success: true, jobs });
+  return NextResponse.json({ success: true, jobs }, {
+    headers: {
+      'Cache-Control': 'no-store, max-age=0, must-revalidate',
+    },
+  });
 }
 
 export async function POST(request: Request) {
@@ -46,6 +53,16 @@ export async function POST(request: Request) {
       tags: body.tags || [body.company, 'Freshers', 'Off Campus'],
       status: body.status || 'active',
     });
+
+    // Invalidate caches across the site
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/', 'page');
+      revalidatePath('/jobs', 'page');
+      revalidatePath(`/job/${created.slug}`, 'page');
+    } catch (e) {
+      console.warn('Revalidation error:', e);
+    }
 
     return NextResponse.json({ success: true, job: created }, { status: 201 });
   } catch (error) {

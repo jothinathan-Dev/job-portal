@@ -5,6 +5,10 @@ import JobsClientList from '@/app/jobs/JobsClientList';
 import AdBanner from '@/components/AdBanner';
 import { MapPin } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
+
 interface LocationPageProps {
   params: {
     location: string;
@@ -25,7 +29,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const formattedLocation = params.location.replace('-', ' ').toUpperCase();
   return {
-    title: `Freshers IT Jobs in ${formattedLocation} - CommonJobs`,
+    title: `Freshers IT Jobs in ${formattedLocation} - FreshJobs`,
     description: `Browse verified software developer, IT trainee, and tech off-campus drives based in ${formattedLocation}. Direct application links.`,
   };
 }

@@ -8,24 +8,27 @@ const DATA_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'jobs.json');
 // In-memory memory fallback if file system is read-only (like Vercel serverless functions)
 let memoryJobs: JobListing[] = (initialJobs as unknown) as JobListing[];
 
-export function getJobs(filters?: JobFilterParams): JobListing[] {
-  let jobs: JobListing[] = [];
+function loadRawJobs(): JobListing[] {
   try {
     if (fs.existsSync(DATA_FILE_PATH)) {
       const fileData = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
-      jobs = JSON.parse(fileData);
-    } else {
-      jobs = memoryJobs;
+      const parsed = JSON.parse(fileData);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memoryJobs = parsed;
+        return parsed;
+      }
     }
-  } catch {
-    jobs = memoryJobs;
+  } catch (error) {
+    console.error('Error reading jobs data from disk:', error);
   }
+  return memoryJobs;
+}
 
-  // Update memory state
-  memoryJobs = jobs;
+export function getJobs(filters?: JobFilterParams): JobListing[] {
+  const jobs = loadRawJobs();
 
   if (!filters) {
-    return jobs.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
+    return [...jobs].sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
   }
 
   return jobs.filter((job) => {
@@ -81,25 +84,23 @@ export function getJobs(filters?: JobFilterParams): JobListing[] {
 }
 
 export function getAllJobsAdmin(): JobListing[] {
-  try {
-    if (fs.existsSync(DATA_FILE_PATH)) {
-      const fileData = fs.readFileSync(DATA_FILE_PATH, 'utf-8');
-      return JSON.parse(fileData).sort((a: JobListing, b: JobListing) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
-    }
-  } catch {
-    // fallback
-  }
-  return memoryJobs.sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
+  const jobs = loadRawJobs();
+  return [...jobs].sort((a, b) => new Date(b.postedDate).getTime() - new Date(a.postedDate).getTime());
 }
 
 export function getJobBySlug(slug: string): JobListing | undefined {
-  const jobs = getJobs();
-  return jobs.find((j) => j.slug === slug || j.id === slug);
+  const jobs = getAllJobsAdmin();
+  const normalizedSlug = decodeURIComponent(slug).toLowerCase().trim();
+  return jobs.find((j) => j.slug.toLowerCase() === normalizedSlug || j.id === slug);
 }
 
 export function saveJobs(jobs: JobListing[]): boolean {
   memoryJobs = jobs;
   try {
+    const dir = path.dirname(DATA_FILE_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(jobs, null, 2), 'utf-8');
     return true;
   } catch (error) {
@@ -111,7 +112,22 @@ export function saveJobs(jobs: JobListing[]): boolean {
 export function createJob(newJob: Omit<JobListing, 'id' | 'postedDate' | 'viewsCount'>): JobListing {
   const jobs = getAllJobsAdmin();
   const id = `job-${Date.now()}`;
-  const slug = newJob.slug || newJob.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  let baseSlug = (newJob.slug || newJob.title)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+  
+  if (!baseSlug) {
+    baseSlug = `job-${Date.now()}`;
+  }
+
+  // Ensure unique slug
+  let slug = baseSlug;
+  let counter = 1;
+  while (jobs.some(j => j.slug === slug)) {
+    slug = `${baseSlug}-${counter}`;
+    counter++;
+  }
   
   const created: JobListing = {
     ...newJob,
@@ -122,8 +138,8 @@ export function createJob(newJob: Omit<JobListing, 'id' | 'postedDate' | 'viewsC
     status: newJob.status || 'active',
   };
 
-  jobs.unshift(created);
-  saveJobs(jobs);
+  const updatedJobs = [created, ...jobs];
+  saveJobs(updatedJobs);
   return created;
 }
 

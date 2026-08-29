@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { ShieldCheck, Cookie, Lock, Eye } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - CommonJobs',
-  description: 'Privacy policy for CommonJobs detailing our data practices, cookie usage, and Google AdSense advertising policies.',
+  title: 'Privacy Policy - FreshJobs',
+  description: 'Privacy policy for FreshJobs detailing our data practices, cookie usage, and Google AdSense advertising policies.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -26,28 +26,28 @@ export default function PrivacyPolicyPage() {
 
           <div className="prose prose-slate max-w-none text-slate-600 text-sm space-y-6 leading-relaxed">
             <p>
-              At <strong>CommonJobs</strong>, accessible from our official website, the privacy of our visitors is of paramount importance to us. This Privacy Policy document outlines the types of information that is collected and recorded by CommonJobs and how we utilize it.
+              At <strong>FreshJobs</strong>, accessible from our official website, the privacy of our visitors is of paramount importance to us. This Privacy Policy document outlines the types of information that is collected and recorded by FreshJobs and how we utilize it.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
               1. Zero User Registration & Personal Information
             </h2>
             <p>
-              CommonJobs operates on a public discovery model. We do <strong>NOT</strong> require job seekers to register accounts, provide passwords, or upload resumes on our servers. When you click an &ldquo;Apply&rdquo; button, you are redirected directly to the official recruitment portal of the respective hiring organization.
+              FreshJobs operates on a public discovery model. We do <strong>NOT</strong> require job seekers to register accounts, provide passwords, or upload resumes on our servers. When you click an &ldquo;Apply&rdquo; button, you are redirected directly to the official recruitment portal of the respective hiring organization.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
               2. Log Files
             </h2>
             <p>
-              CommonJobs follows standard industry procedures regarding the use of log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any personally identifiable information and are used solely for analyzing trends, administering the site, and improving page loading performance.
+              FreshJobs follows standard industry procedures regarding the use of log files. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any personally identifiable information and are used solely for analyzing trends, administering the site, and improving page loading performance.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
               3. Cookies and Web Beacons
             </h2>
             <p>
-              Like any other website, CommonJobs uses &lsquo;cookies&rsquo;. These cookies are used to store information including visitors&rsquo; preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users&rsquo; experience by customizing our web page content based on visitors&rsquo; browser type and other information.
+              Like any other website, FreshJobs uses &lsquo;cookies&rsquo;. These cookies are used to store information including visitors&rsquo; preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users&rsquo; experience by customizing our web page content based on visitors&rsquo; browser type and other information.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
@@ -66,14 +66,14 @@ export default function PrivacyPolicyPage() {
               5. Third Party Privacy Policies
             </h2>
             <p>
-              CommonJobs&rsquo;s Privacy Policy does not apply to other advertisers or external websites linked from our pages (such as employer career portals, LinkedIn, or external cloud application portals). Thus, we advise you to consult the respective Privacy Policies of these third-party servers for more detailed information.
+              FreshJobs&rsquo;s Privacy Policy does not apply to other advertisers or external websites linked from our pages (such as employer career portals, LinkedIn, or external cloud application portals). Thus, we advise you to consult the respective Privacy Policies of these third-party servers for more detailed information.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
               6. Children&rsquo;s Information
             </h2>
             <p>
-              Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. CommonJobs does not knowingly collect any Personal Identifiable Information from children under the age of 13.
+              Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. FreshJobs does not knowingly collect any Personal Identifiable Information from children under the age of 13.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">

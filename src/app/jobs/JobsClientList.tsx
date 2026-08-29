@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { JobListing } from '@/lib/types';
 import JobCard from '@/components/JobCard';
 import JobFilters from '@/components/JobFilters';
@@ -21,12 +21,16 @@ export default function JobsClientList({
   defaultLocation = 'All Locations',
   defaultCategory = 'All Categories',
 }: JobsClientListProps) {
-  const [jobs] = useState<JobListing[]>(initialJobs);
+  const [jobs, setJobs] = useState<JobListing[]>(initialJobs);
   const [search, setSearch] = useState('');
   const [selectedBatch, setSelectedBatch] = useState(defaultBatch);
   const [selectedLocation, setSelectedLocation] = useState(defaultLocation);
   const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
   const [selectedJobType, setSelectedJobType] = useState('All Types');
+
+  useEffect(() => {
+    setJobs(initialJobs);
+  }, [initialJobs]);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {

@@ -6,7 +6,7 @@ interface JobSchemaProps {
 }
 
 export default function JobSchema({ job }: JobSchemaProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://commonjobs.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in';
   
   // Calculate valid through date (defaults to 60 days from posted date if not specified)
   const posted = new Date(job.postedDate);

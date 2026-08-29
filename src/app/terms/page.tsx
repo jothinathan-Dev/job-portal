@@ -2,8 +2,8 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - CommonJobs',
-  description: 'Terms and conditions governing the use of CommonJobs job notification portal.',
+  title: 'Terms of Service - FreshJobs',
+  description: 'Terms and conditions governing the use of FreshJobs job notification portal.',
 };
 
 export default function TermsPage() {
@@ -23,14 +23,14 @@ export default function TermsPage() {
 
           <div className="prose prose-slate max-w-none text-slate-600 text-sm space-y-6 leading-relaxed">
             <p>
-              Welcome to <strong>CommonJobs</strong>. By accessing or using this website, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+              Welcome to <strong>FreshJobs</strong>. By accessing or using this website, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
               1. Informational Nature of Service
             </h2>
             <p>
-              CommonJobs functions as a job search aggregator and informational notification board. We are not an employer, recruitment agency, or agent of any listed company. We do not participate in candidate shortlisting, interview scheduling, or employment decisions.
+              FreshJobs functions as a job search aggregator and informational notification board. We are not an employer, recruitment agency, or agent of any listed company. We do not participate in candidate shortlisting, interview scheduling, or employment decisions.
             </p>
 
             <h2 className="text-lg font-bold text-slate-900 font-heading pt-2">
@@ -58,7 +58,7 @@ export default function TermsPage() {
               5. Modifications to Terms
             </h2>
             <p>
-              CommonJobs may revise these Terms of Service at any time without prior notice. By continuing to use this website, you agree to be bound by the current version of these terms.
+              FreshJobs may revise these Terms of Service at any time without prior notice. By continuing to use this website, you agree to be bound by the current version of these terms.
             </p>
           </div>
         </div>

@@ -31,7 +31,7 @@ export default function ContactPage() {
               Get In Touch
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
-              Contact CommonJobs Team
+              Contact FreshJobs Team
             </h1>
             <p className="text-sm text-slate-600">
               Have questions, off-campus drive submissions, recruitment inquiries, or copyright notices? Reach out to us directly.
@@ -46,7 +46,7 @@ export default function ContactPage() {
                   <Mail className="w-4 h-4" />
                 </div>
                 <h3 className="font-bold text-slate-900 text-sm">Direct Email</h3>
-                <p className="text-xs text-slate-500">support@commonjobs.in</p>
+                <p className="text-xs text-slate-500">support@freshjobs.in</p>
                 <p className="text-xs text-slate-400">Response within 24 hours</p>
               </div>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-lg font-bold text-slate-900">Message Sent Successfully!</h3>
                   <p className="text-xs text-slate-600 max-w-sm mx-auto">
-                    Thank you for contacting CommonJobs. Our team will review your inquiry and get back to you shortly.
+                    Thank you for contacting FreshJobs. Our team will review your inquiry and get back to you shortly.
                   </p>
                   <button
                     onClick={() => {

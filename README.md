@@ -1,6 +1,6 @@
-# CommonJobs - AdSense-Ready No-Login Job Portal
+# FreshJobs - AdSense-Ready No-Login Job Portal
 
-A modern, high-performance off-campus job board inspired by `commonjobs.in`. Built for maximum candidate retention with **zero login / no registration** requirements for visitors, a password-protected **Admin CMS (`/admin`)** for publishing jobs, embedded **Google AdSense** monetization slots, and **Google `JobPosting` JSON-LD schema** for automatic search engine indexing.
+A modern, high-performance off-campus job board. Built for maximum candidate retention with **zero login / no registration** requirements for visitors, a password-protected **Admin CMS (`/admin`)** for publishing jobs, embedded **Google AdSense** monetization slots, and **Google `JobPosting` JSON-LD schema** for automatic search engine indexing.
 
 ---
 

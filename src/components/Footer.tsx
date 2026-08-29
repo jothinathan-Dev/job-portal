@@ -18,7 +18,7 @@ export default function Footer() {
                 <Briefcase className="w-5 h-5" />
               </div>
               <span className="font-extrabold text-xl tracking-tight text-white font-heading">
-                Common<span className="text-indigo-400">Jobs</span>
+                Fresh<span className="text-indigo-400">Jobs</span>
               </span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed pr-6">
@@ -154,12 +154,12 @@ export default function Footer() {
           <div className="flex items-start gap-2 bg-slate-950/60 p-3.5 rounded-lg border border-slate-800/80">
             <ShieldAlert className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
             <p>
-              <strong>Disclaimer:</strong> CommonJobs is an informational job alert board. We are not a recruitment agency and never charge candidates for job opportunities or interview applications. All logos, trademarks, and brand names belong to their respective corporate owners.
+              <strong>Disclaimer:</strong> FreshJobs is an informational job alert board. We are not a recruitment agency and never charge candidates for job opportunities or interview applications. All logos, trademarks, and brand names belong to their respective corporate owners.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-3">
-            <p>© {currentYear} CommonJobs Portal. All rights reserved.</p>
+            <p>© {currentYear} FreshJobs Portal. All rights reserved.</p>
             <div className="flex items-center gap-1 text-slate-400">
               <span>Crafted for Freshers & Job Seekers</span>
             </div>

@@ -4,8 +4,11 @@ import { getJobs } from '@/lib/db';
 import JobsClientList from './JobsClientList';
 import AdBanner from '@/components/AdBanner';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export const metadata: Metadata = {
-  title: 'All Off-Campus Drives & Freshers Jobs - CommonJobs',
+  title: 'All Off-Campus Drives & Freshers Jobs - FreshJobs',
   description: 'Browse all verified IT jobs, off-campus recruitment drives, software engineering openings, and internships for freshers across India.',
 };
 

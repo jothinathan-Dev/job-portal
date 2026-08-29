@@ -1,8 +1,11 @@
 import { MetadataRoute } from 'next';
 import { getJobs } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://commonjobs.in';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in';
   const jobs = getJobs();
 
   const staticPages: MetadataRoute.Sitemap = [

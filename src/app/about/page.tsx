@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Briefcase, Target, ShieldCheck, Users, Zap } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us - CommonJobs',
-  description: 'Learn about CommonJobs, our mission to empower college freshers and job seekers with direct, verified off-campus career opportunities without login barriers.',
+  title: 'About Us - FreshJobs',
+  description: 'Learn about FreshJobs, our mission to empower college freshers and job seekers with direct, verified off-campus career opportunities without login barriers.',
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
               Who We Are
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading">
-              About CommonJobs Portal
+              About FreshJobs Portal
             </h1>
             <p className="text-base text-slate-600 leading-relaxed">
               Empowering college graduates, early-career tech professionals, and students with transparent, frictionless access to verified off-campus drives across India.
@@ -32,7 +32,7 @@ export default function AboutPage() {
               <span>Our Core Mission</span>
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Finding off-campus job drives shouldn't require jumping through paywalls, forced registration forms, or suspicious spam portals. CommonJobs was created to provide a clean, fast, and 100% free discovery platform where job seekers can view authentic job requirements and apply directly on the hiring company's official career portal (such as Oracle Cloud, Workday, Greenhouse, and SuccessFactors).
+              Finding off-campus job drives shouldn't require jumping through paywalls, forced registration forms, or suspicious spam portals. FreshJobs was created to provide a clean, fast, and 100% free discovery platform where job seekers can view authentic job requirements and apply directly on the hiring company's official career portal (such as Oracle Cloud, Workday, Greenhouse, and SuccessFactors).
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export default function AboutPage() {
               Our Content & Ethical Standards
             </h2>
             <p className="text-sm text-slate-600 leading-relaxed">
-              CommonJobs operates as an independent informational portal. We do not represent any corporate employer unless explicitly stated, nor do we charge candidates any fees for job notifications. All logos and trademarks featured on this portal belong to their respective corporate copyright holders.
+              FreshJobs operates as an independent informational portal. We do not represent any corporate employer unless explicitly stated, nor do we charge candidates any fees for job notifications. All logos and trademarks featured on this portal belong to their respective corporate copyright holders.
             </p>
           </div>
         </div>

@@ -6,10 +6,10 @@ import StickyAnchorAd from '@/components/StickyAnchorAd';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://commonjobs.in'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in'),
   title: {
-    default: 'CommonJobs - Latest Off Campus Drives, Freshers Jobs & Internships',
-    template: '%s | CommonJobs'
+    default: 'FreshJobs - Latest Off Campus Drives, Freshers Jobs & Internships',
+    template: '%s | FreshJobs'
   },
   description: 'Verified off-campus drives, fresher hiring, software developer jobs (2024, 2025, 2026 Batch), tech internships and career updates with direct apply links. No registration required.',
   keywords: [
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     'IT Jobs for Freshers',
     'SQL Developer Off Campus',
     'Remote Jobs India',
-    'CommonJobs'
+    'FreshJobs'
   ],
-  authors: [{ name: 'CommonJobs Team' }],
+  authors: [{ name: 'FreshJobs Team' }],
   robots: {
     index: true,
     follow: true,
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'CommonJobs',
-    title: 'CommonJobs - Latest Off Campus Drives, Freshers Jobs & Internships',
+    siteName: 'FreshJobs',
+    title: 'FreshJobs - Latest Off Campus Drives, Freshers Jobs & Internships',
     description: 'Find verified off-campus drives and freshers IT jobs across India. Direct official apply links.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CommonJobs - Off Campus Hiring & Freshers Jobs',
+    title: 'FreshJobs - Off Campus Hiring & Freshers Jobs',
     description: 'Apply directly for freshers & tech jobs with zero login hassle.',
   },
 };

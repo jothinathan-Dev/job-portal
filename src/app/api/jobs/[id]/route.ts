@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
-import { updateJob, deleteJob, getAllJobsAdmin } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
+import { updateJob, deleteJob } from '@/lib/db';
+
+export const dynamic = 'force-dynamic';
 
 export async function PUT(
   request: Request,
@@ -18,6 +21,15 @@ export async function PUT(
 
     if (!updated) {
       return NextResponse.json({ success: false, message: 'Job not found' }, { status: 404 });
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/', 'page');
+      revalidatePath('/jobs', 'page');
+      revalidatePath(`/job/${updated.slug}`, 'page');
+    } catch (e) {
+      console.warn('Revalidation error:', e);
     }
 
     return NextResponse.json({ success: true, job: updated });
@@ -43,6 +55,14 @@ export async function DELETE(
 
     if (!deleted) {
       return NextResponse.json({ success: false, message: 'Job not found or already deleted' }, { status: 404 });
+    }
+
+    try {
+      revalidatePath('/', 'layout');
+      revalidatePath('/', 'page');
+      revalidatePath('/jobs', 'page');
+    } catch (e) {
+      console.warn('Revalidation error:', e);
     }
 
     return NextResponse.json({ success: true, message: 'Job deleted successfully' });

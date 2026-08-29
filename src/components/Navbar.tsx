@@ -57,7 +57,7 @@ export default function Navbar() {
             </div>
             <div>
               <div className="flex items-center gap-1">
-                <span className="font-extrabold text-xl tracking-tight text-slate-900 font-heading">Common</span>
+                <span className="font-extrabold text-xl tracking-tight text-slate-900 font-heading">Fresh</span>
                 <span className="font-extrabold text-xl tracking-tight text-brand-600 font-heading">Jobs</span>
                 <span className="text-[10px] bg-brand-100 text-brand-700 font-bold px-1.5 py-0.5 rounded ml-1">PORTAL</span>
               </div>

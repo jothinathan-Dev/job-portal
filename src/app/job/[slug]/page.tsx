@@ -24,6 +24,10 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
+
 interface JobPageProps {
   params: {
     slug: string;
@@ -41,11 +45,11 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
   const job = getJobBySlug(params.slug);
   if (!job) {
     return {
-      title: 'Job Not Found - CommonJobs',
+      title: 'Job Not Found - FreshJobs',
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://commonjobs.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in';
   const pageUrl = `${siteUrl}/job/${job.slug}`;
 
   return {
@@ -89,7 +93,7 @@ export default function SingleJobPage({ params }: JobPageProps) {
     .filter((j) => j.id !== job.id && (j.roleCategory === job.roleCategory || j.batches.some(b => job.batches.includes(b))))
     .slice(0, 3);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://commonjobs.in';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in';
   const currentUrl = `${siteUrl}/job/${job.slug}`;
 
   const topAdSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER;
@@ -323,7 +327,7 @@ export default function SingleJobPage({ params }: JobPageProps) {
             <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-start gap-3 text-xs text-amber-900">
               <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
               <div>
-                <strong>Important Candidate Notice:</strong> CommonJobs is an open informational platform and never demands any fee, registration charges, or money for job applications or interviews. If anyone asks for money claiming to represent {job.company}, do not pay.
+                <strong>Important Candidate Notice:</strong> FreshJobs is an open informational platform and never demands any fee, registration charges, or money for job applications or interviews. If anyone asks for money claiming to represent {job.company}, do not pay.
               </div>
             </div>
           </div>
