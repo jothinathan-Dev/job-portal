@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: BatchPageProps): Promise<Meta
   };
 }
 
-export default function BatchPage({ params }: BatchPageProps) {
-  const jobs = getJobs();
+export default async function BatchPage({ params }: BatchPageProps) {
+  const jobs = await getJobs();
   const rawBatch = params.batch.replace('-', ' ');
   const formattedBatchTitle = rawBatch.charAt(0).toUpperCase() + rawBatch.slice(1);
   const topAdSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER;

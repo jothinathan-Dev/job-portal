@@ -17,7 +17,7 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const updated = updateJob(params.id, body);
+    const updated = await updateJob(params.id, body);
 
     if (!updated) {
       return NextResponse.json({ success: false, message: 'Job not found' }, { status: 404 });
@@ -51,7 +51,7 @@ export async function DELETE(
       return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
 
-    const deleted = deleteJob(params.id);
+    const deleted = await deleteJob(params.id);
 
     if (!deleted) {
       return NextResponse.json({ success: false, message: 'Job not found or already deleted' }, { status: 404 });

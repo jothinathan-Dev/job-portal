@@ -35,14 +35,14 @@ interface JobPageProps {
 }
 
 export async function generateStaticParams() {
-  const jobs = getJobs();
+  const jobs = await getJobs();
   return jobs.map((job) => ({
     slug: job.slug,
   }));
 }
 
 export async function generateMetadata({ params }: JobPageProps): Promise<Metadata> {
-  const job = getJobBySlug(params.slug);
+  const job = await getJobBySlug(params.slug);
   if (!job) {
     return {
       title: 'Job Not Found - FreshJobs',
@@ -81,14 +81,14 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
   };
 }
 
-export default function SingleJobPage({ params }: JobPageProps) {
-  const job = getJobBySlug(params.slug);
+export default async function SingleJobPage({ params }: JobPageProps) {
+  const job = await getJobBySlug(params.slug);
 
   if (!job) {
     notFound();
   }
 
-  const allJobs = getJobs();
+  const allJobs = await getJobs();
   const relatedJobs = allJobs
     .filter((j) => j.id !== job.id && (j.roleCategory === job.roleCategory || j.batches.some(b => job.batches.includes(b))))
     .slice(0, 3);

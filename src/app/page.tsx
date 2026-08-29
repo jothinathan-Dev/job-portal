@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Verified off-campus drives, fresher hiring, software developer jobs (2024, 2025, 2026 Batch), tech internships and career updates with direct apply links.',
 };
 
-export default function HomePage() {
-  const jobs = getJobs();
+export default async function HomePage() {
+  const jobs = await getJobs();
 
   return <HomeClient initialJobs={jobs} />;
 }

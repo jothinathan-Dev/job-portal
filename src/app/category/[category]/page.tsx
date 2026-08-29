@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const jobs = getJobs();
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const jobs = await getJobs();
   const rawCat = params.category.replace('-', ' ');
   const formattedCategoryTitle = rawCat.charAt(0).toUpperCase() + rawCat.slice(1);
   const topAdSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER;

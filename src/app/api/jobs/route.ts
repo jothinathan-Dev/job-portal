@@ -5,7 +5,7 @@ import { getAllJobsAdmin, createJob } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const jobs = getAllJobsAdmin();
+  const jobs = await getAllJobsAdmin();
   return NextResponse.json({ success: true, jobs }, {
     headers: {
       'Cache-Control': 'no-store, max-age=0, must-revalidate',
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const created = createJob({
+    const created = await createJob({
       title: body.title,
       slug: body.slug,
       company: body.company,

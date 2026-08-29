@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description: 'Browse all verified IT jobs, off-campus recruitment drives, software engineering openings, and internships for freshers across India.',
 };
 
-export default function AllJobsPage() {
-  const jobs = getJobs();
+export default async function AllJobsPage() {
+  const jobs = await getJobs();
   const topAdSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER;
 
   return (

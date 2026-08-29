@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   };
 }
 
-export default function LocationPage({ params }: LocationPageProps) {
-  const jobs = getJobs();
+export default async function LocationPage({ params }: LocationPageProps) {
+  const jobs = await getJobs();
   const rawLoc = params.location.replace('-', ' ');
   const formattedLocationTitle = rawLoc.charAt(0).toUpperCase() + rawLoc.slice(1);
   const topAdSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_TOP_BANNER;
