@@ -3,7 +3,6 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import StickyAnchorAd from '@/components/StickyAnchorAd';
-import Script from 'next/script';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://freshjobs.in'),
@@ -75,12 +74,11 @@ export default function RootLayout({
         {/* Google AdSense Site Verification Meta Tag */}
         <meta name="google-adsense-account" content={adsenseClientId} />
 
-        {/* Google AdSense Script Integration */}
-        <Script
+        {/* Google AdSense Official Script */}
+        <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-brand-500 selection:text-white">
