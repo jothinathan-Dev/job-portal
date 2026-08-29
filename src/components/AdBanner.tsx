@@ -15,12 +15,16 @@ export default function AdBanner({
   className = '',
   label = 'Advertisement'
 }: AdBannerProps) {
-  const [adLoaded, setAdLoaded] = useState(false);
-  const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const rawAdId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-6534319640160959';
+  const clientId = rawAdId.startsWith('ca-pub-')
+    ? rawAdId
+    : rawAdId.startsWith('pub-')
+    ? `ca-${rawAdId}`
+    : `ca-pub-${rawAdId}`;
 
   useEffect(() => {
     // If real client ID exists and slot ID is configured
-    if (clientId && clientId.startsWith('ca-pub-') && slotId) {
+    if (clientId && clientId.includes('pub-') && slotId) {
       try {
         // @ts-expect-error - adsbygoogle window object
         (window.adsbygoogle = window.adsbygoogle || []).push({});

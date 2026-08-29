@@ -6,7 +6,12 @@ import { X } from 'lucide-react';
 export default function StickyAnchorAd() {
   const [isVisible, setIsVisible] = useState(true);
   const slotId = process.env.NEXT_PUBLIC_ADSENSE_SLOT_STICKY_ANCHOR;
-  const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const rawAdId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-6534319640160959';
+  const clientId = rawAdId.startsWith('ca-pub-')
+    ? rawAdId
+    : rawAdId.startsWith('pub-')
+    ? `ca-${rawAdId}`
+    : `ca-pub-${rawAdId}`;
 
   if (!isVisible) return null;
 

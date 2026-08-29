@@ -54,20 +54,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  const rawAdId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-6534319640160959';
+  const adsenseClientId = rawAdId.startsWith('ca-pub-')
+    ? rawAdId
+    : rawAdId.startsWith('pub-')
+    ? `ca-${rawAdId}`
+    : `ca-pub-${rawAdId}`;
 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Google AdSense Site Verification Meta Tag */}
+        <meta name="google-adsense-account" content={adsenseClientId} />
+
         {/* Google AdSense Script Integration */}
-        {adsenseClientId && adsenseClientId.startsWith('ca-pub-') && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
-            crossOrigin="anonymous"
-            strategy="lazyOnload"
-          />
-        )}
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 antialiased selection:bg-brand-500 selection:text-white">
         <Navbar />
