@@ -15,6 +15,7 @@ export default function AdBanner({
   className = '',
   label = 'Advertisement'
 }: AdBannerProps) {
+  const [adLoaded, setAdLoaded] = useState(false);
   const rawAdId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-6534319640160959';
   const clientId = rawAdId.startsWith('ca-pub-')
     ? rawAdId
